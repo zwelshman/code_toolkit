@@ -47,7 +47,7 @@ def sqltoDF2(query, path, database, server):
     
     example useage
     sqltoDF(query='query.sql',path='../../src/', database = '', server='')
-    '''
+    ''''''
     conn = create_engine(f'mssql+pyodbc://{database}/{server}?driver=SQL+Server')
     query = open(path + query)
     sqlDF = pd.read_sql_query(query.read(), conn)
