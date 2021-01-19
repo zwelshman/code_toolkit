@@ -18,7 +18,7 @@ def main():
     fmtstr = "User:%(user)s %(asctime)s: %(levelname)s: %(funcName)s Line:%(lineno)d %(message)s "
     datestr = "%d/%m/%Y %I:%M:%S %p" 
 
-    logging.basicConfig(filename=DIR + "/output.log", 
+    logging.basicConfig(filename=DIR + "/output_custom.log", 
                     level=logging.DEBUG, 
                     filemode='w',
                     format=fmtstr,

@@ -9,7 +9,7 @@ dir = "src\\util\\Logging\\"
 def main():
     # set basic log level with some parameters
     logging.basicConfig(level=logging.DEBUG, 
-                    filename=dir + "/output.log",
+                    filename=dir + "/output_example.log",
                     filemode='w')
 
     logging.debug("this is a debugging")
