@@ -27,18 +27,23 @@ def with_logging(func):
         logging.info(f"Started process....{func.__name__}")
 
         result = func(*args, **kwargs)
-
+        time.sleep(3)
         logging.info(f"Ended process....{func.__name__}" )
         return result
     return wrapper
 
 
-@with_logging
-def job():
-    print("I'm working...")
+def main():
 
-schedule.every(3).seconds.do(job)
+    @with_logging
+    def job():
+        print("I'm working...")
 
-while 1:
-    schedule.run_pending()
-    time.sleep(1)
+    schedule.every(3).seconds.do(job)
+
+    while 1:
+        schedule.run_pending()
+        #time.sleep(1)
+
+if __name__ == "__main__":
+    main()
