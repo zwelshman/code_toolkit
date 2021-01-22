@@ -2,6 +2,8 @@ import functools
 import time
 import logging
 import schedule
+import getpass
+
 
 
 
@@ -14,8 +16,12 @@ def with_logging(func):
     @functools.wraps(func)
     def wrapper(*args, **kwargs):
 
+        CUSTOM_DATA = {
+            "username":f"{getpass.getuser()}"
+            }
 
-        fmtstr = "%(asctime)s: %(levelname)s: %(funcName)s: Line:%(lineno)d %(message)s "
+
+        fmtstr = "User:%(username)s  %(asctime)s: %(levelname)s: %(funcName)s: Line:%(lineno)d %(message)s "
         datestr = "%d/%m/%Y %I:%M:%S %p" 
         logging.basicConfig(filename=DIR + "./schedule_call.log", 
                         level=logging.DEBUG, 
@@ -24,11 +30,11 @@ def with_logging(func):
                         datefmt = datestr
                         )
 
-        logging.info(f"Started process....{func.__name__}")
-
+        logging.info(f"Started process....{func.__name__}", extra=CUSTOM_DATA)
+        
         result = func(*args, **kwargs)
-        time.sleep(3)
-        logging.info(f"Ended process....{func.__name__}" )
+        
+        logging.info(f"Ended process....{func.__name__}", extra=CUSTOM_DATA)
         return result
     return wrapper
 
